@@ -1,7 +1,11 @@
 
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import "./Register.css"
 
 function Register() {
+
+  const nevigate = useNavigate();
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -20,14 +24,16 @@ function Register() {
     })
 
     const data = await response.json()
-  
+    if (data.status === 'ok') {
+			nevigate('/login')
+		}
   }
 
 
   return (
-    <div className="App">
+    <div className="container">
      <h1>Register</h1>
-     <form action="" onSubmit={registerUser}>
+     <form className='form' action="" onSubmit={registerUser}>
         <input 
             type="text" 
             placeholder="Name" 
@@ -64,7 +70,7 @@ function Register() {
 
         <br />
 
-        <input type="submit" value='Register' />
+        <input className='submitBtn' type="submit" value='Register' />
      </form>
     </div>
   );

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import "./Login.css"
 
 const Login = ()=> {
 
@@ -31,9 +32,9 @@ const Login = ()=> {
 	}
 
 	return (
-		<div>
+		<div className='container'>
 			<h1>Login</h1>
-			<form onSubmit={loginUser}>
+			<form className='form' onSubmit={loginUser}>
 				<input
 					value={email}
 					onChange={(e) => setEmail(e.target.value)}
@@ -48,7 +49,7 @@ const Login = ()=> {
 					placeholder="Password"
 				/>
 				<br />
-				<input type="submit" value="Login" />
+				<input className='submitBtn' type="submit" value="Login" />
 			</form>
 		</div>
 	)
