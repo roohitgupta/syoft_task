@@ -6,6 +6,8 @@ function Register() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [number, setNumber] = useState('');
+  const [role, setRole] = useState('');
 
   async function registerUser(event) {
     event.preventDefault();
@@ -13,7 +15,7 @@ function Register() {
     const response = await fetch('http://localhost:3005/api/register', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, email, password }),
+      body: JSON.stringify({ name, email, password, number, role }),
 
     })
 
@@ -47,6 +49,21 @@ function Register() {
             onChange={(e)=> setPassword(e.target.value)}
         />
         <br />
+        <input 
+            type="number" 
+            placeholder="Number" 
+            value={number}
+            onChange={(e)=> setNumber(e.target.value)}
+        />
+        <br />
+        <select name="role" id="role" onChange={(e)=> setRole(e.target.value)}>
+          <option value="admin">admin</option>
+          <option value="manager">manager</option>
+          <option value="staff">staff</option>
+        </select>
+
+        <br />
+
         <input type="submit" value='Register' />
      </form>
     </div>
