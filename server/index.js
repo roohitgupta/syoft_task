@@ -26,15 +26,15 @@ app.post('/api/register', async (req, res) => {
 })
 
 app.post('/api/login', async (req, res) => {
-    try{
-        await User.create({
-            name: req.body.name,
-            email: req.body.email,
-            password: req.body.password,
-        })
-        return res.json({ status: 'ok' })
-    } catch (error){
-        return res.json({status: 'error',})
+	const user = await User.findOne({
+		email: req.body.email,
+        password: req.body.password,
+	})
+
+    if(user) {
+        return res.json({ status: "ok", user: true })
+    } else {
+        return res.json({ status: "error", user: false })
     }
 })
 
